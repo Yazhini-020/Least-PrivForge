@@ -51,7 +51,7 @@ from typing import Optional
 
 # ── configuration ──────────────────────────────────────────────────────────────
 
-USE_MOCK = False  # ← flip to False when AWS credentials are configured
+USE_MOCK = True  # ← flip to False when AWS credentials are configured
 
 logging.basicConfig(
     level=logging.INFO,
@@ -84,6 +84,17 @@ AWS_MANAGED_ROLE_PREFIXES = (
 # AWS-managed policy ARNs always start with this prefix (vs customer-managed
 # policies, which start with arn:aws:iam::<account-id>:policy/...).
 AWS_MANAGED_POLICY_ARN_PREFIX = "arn:aws:iam::aws:policy/"
+
+# High-privilege AWS-managed policies are NEVER skipped by the managed-policy
+# filter, even though AWS authors their content. The risk here isn't the
+# policy's wording — it's the decision by someone on your team to attach it.
+# A group/user/role with AdministratorAccess attached is functionally
+# identical to Action:"*" + Resource:"*" and must always be scanned/flagged.
+HIGH_PRIVILEGE_MANAGED_POLICY_ARNS = frozenset({
+    "arn:aws:iam::aws:policy/AdministratorAccess",
+    "arn:aws:iam::aws:policy/PowerUserAccess",
+    "arn:aws:iam::aws:policy/IAMFullAccess",
+})
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  SECTION 1 — DATA SOURCE
@@ -167,6 +178,9 @@ def _get_all_entities_aws():
             attached_paginator = iam.get_paginator("list_attached_role_policies")
             for attached_page in attached_paginator.paginate(RoleName=role_name):
                 for policy in attached_page["AttachedPolicies"]:
+                    is_high_privilege = policy["PolicyArn"] in HIGH_PRIVILEGE_MANAGED_POLICY_ARNS
+                    if _is_aws_managed_policy(policy["PolicyArn"]) and not is_high_privilege:
+                        continue
                     doc = _fetch_managed_policy_document(iam, policy["PolicyArn"])
                     if doc:
                         role_data["AttachedPolicies"].append({
@@ -208,7 +222,8 @@ def _get_all_entities_aws():
             attached_paginator = iam.get_paginator("list_attached_user_policies")
             for attached_page in attached_paginator.paginate(UserName=user_name):
                 for policy in attached_page["AttachedPolicies"]:
-                    if _is_aws_managed_policy(policy["PolicyArn"]):
+                    is_high_privilege = policy["PolicyArn"] in HIGH_PRIVILEGE_MANAGED_POLICY_ARNS
+                    if _is_aws_managed_policy(policy["PolicyArn"]) and not is_high_privilege:
                         continue
                     doc = _fetch_managed_policy_document(iam, policy["PolicyArn"])
                     if doc:
@@ -248,10 +263,17 @@ def _get_all_entities_aws():
                     })
 
             # attached managed policies
-            # managed (attached) policies
-            attached_paginator = iam.get_paginator("list_attached_role_policies")
-            for attached_page in attached_paginator.paginate(RoleName=role_name):
+            # FIXED: was previously calling list_attached_role_policies with
+            # RoleName=role_name (leftover from the roles loop above), which
+            # silently attached the *last scanned role's* managed policies to
+            # every group instead of the group's own. Now correctly uses
+            # list_attached_group_policies with GroupName=group_name.
+            attached_paginator = iam.get_paginator("list_attached_group_policies")
+            for attached_page in attached_paginator.paginate(GroupName=group_name):
                 for policy in attached_page["AttachedPolicies"]:
+                    is_high_privilege = policy["PolicyArn"] in HIGH_PRIVILEGE_MANAGED_POLICY_ARNS
+                    if _is_aws_managed_policy(policy["PolicyArn"]) and not is_high_privilege:
+                        continue
                     doc = _fetch_managed_policy_document(iam, policy["PolicyArn"])
                     if doc:
                         group_data["AttachedPolicies"].append({
@@ -302,8 +324,17 @@ def _is_aws_managed_policy(policy_arn: str) -> bool:
     """
     True if this is an AWS-managed policy (arn:aws:iam::aws:policy/...)
     rather than a customer-managed policy your team wrote. AWS managed
-    policies are reviewed and maintained by AWS; flagging them produces
-    noise without giving your developers anything actionable to fix.
+    policies are reviewed and maintained by AWS; flagging most of them
+    produces noise without giving your developers anything actionable
+    to fix on the policy content itself.
+
+    EXCEPTION: high-privilege AWS-managed policies (AdministratorAccess,
+    PowerUserAccess, IAMFullAccess — see HIGH_PRIVILEGE_MANAGED_POLICY_ARNS)
+    are never treated as "safe to skip" here. The risk in those cases isn't
+    the policy's wording, it's the decision to attach it, and that decision
+    was made by someone on your team. Callers should check
+    HIGH_PRIVILEGE_MANAGED_POLICY_ARNS BEFORE calling this function so those
+    policies are always fetched and scanned regardless of this result.
     """
     return policy_arn.startswith(AWS_MANAGED_POLICY_ARN_PREFIX)
 # ══════════════════════════════════════════════════════════════════════════════
@@ -351,7 +382,8 @@ def detect_wildcards_in_statement(statement: dict) -> list:
 
     actions   = _normalize(statement.get("Action",   []))
     resources = _normalize(statement.get("Resource", []))
-
+    if not actions or not resources:
+        return findings
     # ── classify actions ───────────────────────────────────────────────────────
     has_full_wildcard_action    = "*" in actions
     has_service_wildcard_action = any(

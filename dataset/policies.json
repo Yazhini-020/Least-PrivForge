@@ -1,0 +1,888 @@
+
+[
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 1
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:CreateUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.95
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.9
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:Decrypt"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.88
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.85
+  },
+  {
+    "finding": {
+      "actions": [
+        "organizations:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.92
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "arn:aws:s3:::prod-bucket/*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.86
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:CreateAccessKey",
+        "iam:AttachUserPolicy"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.93
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.75
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:InvokeFunction"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.72
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.68
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "ec2:StartInstances",
+        "ec2:StopInstances"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.65
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.7
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:RunInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.78
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:PutBucketPolicy"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.62
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:*",
+        "sqs:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:Publish"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.6
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.5
+  },
+  {
+    "finding": {
+      "actions": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "logs:PutLogEvents"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.4
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:PutMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:PutMetricData"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.38
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:Publish"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:Publish"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.42
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:SendMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.45
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:Query",
+        "dynamodb:Scan"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:Query"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.48
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.35
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:ListAllMyBuckets"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListAllMyBuckets"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.3
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject"
+      ],
+      "resources": [
+        "arn:aws:s3:::my-bucket/*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.15
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:eu-central-1:123:table/Orders"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.12
+  },
+  {
+    "finding": {
+      "actions": [
+        "logs:PutLogEvents"
+      ],
+      "resources": [
+        "arn:aws:logs:eu-central-1:123:log-group:/aws/lambda/fn:*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "logs:PutLogEvents"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.08
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:ListBucket"
+      ],
+      "resources": [
+        "arn:aws:s3:::my-bucket"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListBucket"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.1
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:eu-central-1:123:secret:prod/db-*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.18
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:ListBucket"
+      ],
+      "resources": [
+        "arn:aws:s3:::app-bucket",
+        "arn:aws:s3:::app-bucket/*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:ListBucket"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.2
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.25
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:eu-central-1:123:table/Sessions"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.22
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "arn:aws:sqs:eu-central-1:123:queue/orders"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:SendMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.14
+  },
+  {
+    "finding": {
+      "actions": [
+        "ecr:GetAuthorizationToken",
+        "ecr:PutImage"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "ecr:PutImage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.32
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject"
+      ],
+      "resources": [
+        "arn:aws:s3:::my-bucket/*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.15
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:eu-central-1:123:table/Orders"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.12
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "resources": [
+        "arn:aws:s3:::app-bucket/*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.18
+  },
+  {
+    "finding": {
+      "actions": [
+        "logs:PutLogEvents"
+      ],
+      "resources": [
+        "arn:aws:logs:eu-central-1:123:log-group:/aws/lambda/fn:*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.1
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "arn:aws:sqs:eu-central-1:123:queue/orders"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.16
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:eu-central-1:123:secret:prod/db-*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.2
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.28
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.97
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:CreateUser",
+        "iam:AttachUserPolicy"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.93
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances",
+        "ec2:RunInstances",
+        "ec2:StartInstances"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.85
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:ListBucket"
+      ],
+      "action_count": 4
+    },
+    "risk_score": 0.78
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:Decrypt",
+        "kms:Encrypt"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.86
+  }
+]

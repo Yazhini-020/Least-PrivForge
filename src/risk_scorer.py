@@ -1,188 +1,139 @@
+"""
+risk_scorer.py — Risk Scoring Engine (Module 2)
+AI IAM Least-Privilege Enforcer
+
+ML mode (default): loads trained XGBoost model from models/xgboost_model.pkl,
+falls back to rule-based scoring if the model file is missing or empty.
+
+Both modes take a finding dict shaped like scanner.py's output:
+    {"actions": [...], "resources": [...], "policy_type": ..., "entity_type": ...}
+and an optional usage_data dict shaped like cloudtrail_analyzer.py's output:
+    {"actions_used": [...], "action_count": ...}
+"""
+
+import os
+import pickle
+import logging
 from typing import Dict, Any, List
-import json
+
+log = logging.getLogger(__name__)
+
+MODEL_PATH = "models/xgboost_model.pkl"
+
 
 class RiskScorer:
-    """
-    Score IAM policies based on blast radius and exposure.
-    Rule-based scoring first, ML (XGBoost) added in Week 4.
-    """
-    
-    def __init__(self):
-        self.wildcard_weight = 0.35
-        self.multi_service_weight = 0.25
-        self.admin_actions_weight = 0.20
-        self.internet_facing_weight = 0.20
-    
-    def score_policy(self, policy_json: Dict[str, Any], 
-                    entity_type: str = 'role',
-                    is_internet_facing: bool = False) -> Dict[str, Any]:
+    def __init__(self, use_ml: bool = True):
+        self.use_ml = use_ml
+        self.model = None
+
+        if use_ml and os.path.exists(MODEL_PATH) and os.path.getsize(MODEL_PATH) > 0:
+            with open(MODEL_PATH, "rb") as f:
+                self.model = pickle.load(f)
+            log.info("Loaded XGBoost risk model from %s", MODEL_PATH)
+        elif use_ml:
+            log.warning(
+                "ML mode requested but no trained model found at %s. "
+                "Run `python -m src.train_model` first. Falling back to rule-based scoring.",
+                MODEL_PATH
+            )
+            self.use_ml = False
+
+    def score_policy(self, finding: dict, usage_data: dict = None) -> Dict[str, Any]:
         """
-        Score a single policy on blast radius.
-        Return: {score: 0.0-1.0, severity: LOW/MEDIUM/HIGH/CRITICAL, reasons: []}
+        Score a single finding.
+
+        Args:
+            finding: dict with 'actions', 'resources', 'policy_type', 'entity_type'
+            usage_data: optional dict with 'actions_used', 'action_count'
         """
-        
+        usage_data = usage_data or {}
+        if self.use_ml and self.model is not None:
+            return self._score_ml(finding, usage_data)
+        return self._score_rule_based(finding)
+
+    def _score_ml(self, finding: dict, usage_data: dict) -> Dict[str, Any]:
+        from src.ml_features import extract_features, features_to_vector
+        import numpy as np
+
+        features = extract_features(finding, usage_data)
+        vector = np.array([features_to_vector(features)])
+
+        score = float(self.model.predict(vector)[0])
+        score = max(0.0, min(1.0, score))
+
+        return {
+            "score": round(score, 3),
+            "severity": self._score_to_severity(score),
+            "method": "xgboost",
+            "features": features,
+        }
+
+    def _score_rule_based(self, finding: dict) -> Dict[str, Any]:
         score = 0.0
         reasons = []
-        
-        # Feature 1: Wildcard actions
-        has_action_wildcard = self._check_action_wildcard(policy_json)
-        if has_action_wildcard:
-            score += self.wildcard_weight
+
+        actions = finding.get("actions", []) or []
+        resources = finding.get("resources", []) or []
+
+        if "*" in actions:
+            score += 0.5
             reasons.append("Action:* grants all permissions")
-        
-        # Feature 2: Wildcard resources
-        has_resource_wildcard = self._check_resource_wildcard(policy_json)
-        if has_resource_wildcard:
-            score += self.wildcard_weight
+
+        service_wildcards = [a for a in actions if isinstance(a, str) and a.endswith(":*")]
+        if service_wildcards:
+            score += 0.3
+            reasons.append(f"Service-level wildcard(s): {', '.join(sorted(service_wildcards))}")
+
+        if "*" in resources:
+            score += 0.35
             reasons.append("Resource:* exposes entire account")
-        
-        # Feature 3: Multiple high-risk services
-        services = self._extract_services(policy_json)
+
+        services = {a.split(":")[0] for a in actions if isinstance(a, str) and ":" in a}
         if len(services) > 3:
-            score += self.multi_service_weight
-            reasons.append(f"Policy grants access to {len(services)} services: {', '.join(sorted(services)[:5])}")
-        
-        # Feature 4: Admin-level actions
-        admin_actions = self._check_admin_actions(policy_json)
-        if admin_actions:
-            score += self.admin_actions_weight
-            reasons.append(f"Admin actions detected: {', '.join(admin_actions[:3])}")
-        
-        # Feature 5: Internet-facing entities
-        if is_internet_facing:
-            score += self.internet_facing_weight
-            reasons.append("Entity is internet-facing (high blast radius)")
-        
-        # Normalize score to 0.0-1.0
+            score += 0.25
+            reasons.append(f"Grants access to {len(services)} services")
+
+        high_impact = {"iam", "ec2", "kms", "lambda", "sts", "organizations"}
+        touched = services & high_impact
+        if touched:
+            score += 0.2
+            reasons.append(f"Touches high-impact services: {', '.join(sorted(touched))}")
+
         score = min(score, 1.0)
-        
-        # Map to severity
-        severity = self._score_to_severity(score)
-        
+
         return {
-            'score': round(score, 3),
-            'severity': severity,
-            'reasons': reasons,
-            'features': {
-                'has_action_wildcard': has_action_wildcard,
-                'has_resource_wildcard': has_resource_wildcard,
-                'num_services': len(services),
-                'num_admin_actions': len(admin_actions),
-                'is_internet_facing': is_internet_facing
-            }
+            "score": round(score, 3),
+            "severity": self._score_to_severity(score),
+            "method": "rule_based",
+            "reasons": reasons,
         }
     
-    def _check_action_wildcard(self, policy_json: Dict) -> bool:
-        """Check if policy has Action:*"""
-        for statement in policy_json.get('Statement', []):
-            actions = statement.get('Action', [])
-            if isinstance(actions, str):
-                actions = [actions]
-            if '*' in actions:
-                return True
-        return False
-    
-    def _check_resource_wildcard(self, policy_json: Dict) -> bool:
-        """Check if policy has Resource:*"""
-        for statement in policy_json.get('Statement', []):
-            resources = statement.get('Resource', [])
-            if isinstance(resources, str):
-                resources = [resources]
-            if '*' in resources:
-                return True
-        return False
-    
-    def _extract_services(self, policy_json: Dict) -> set:
-        """Extract AWS services from policy (s3, iam, ec2, etc.)"""
-        services = set()
-        
-        for statement in policy_json.get('Statement', []):
-            actions = statement.get('Action', [])
-            if isinstance(actions, str):
-                actions = [actions]
-            
-            for action in actions:
-                # Extract service from "service:Action" format
-                if ':' in action:
-                    service = action.split(':')[0]
-                    if service != '*':
-                        services.add(service)
-        
-        return services
-    
-    def _check_admin_actions(self, policy_json: Dict) -> List[str]:
-        """Detect admin-level actions that enable privilege escalation"""
-        admin_keywords = [
-            'iam:CreateAccessKey',
-            'iam:AttachUserPolicy',
-            'iam:AttachRolePolicy',
-            'iam:PutUserPolicy',
-            'iam:PutRolePolicy',
-            'sts:AssumeRole',
-            'ec2:AuthorizeSecurityGroup',
-            'lambda:InvokeFunction'
-        ]
-        
-        detected = []
-        
-        for statement in policy_json.get('Statement', []):
-            actions = statement.get('Action', [])
-            if isinstance(actions, str):
-                actions = [actions]
-            
-            for action in actions:
-                for admin_action in admin_keywords:
-                    if action == admin_action or action.endswith(':*'):
-                        if admin_action not in detected:
-                            detected.append(admin_action)
-        
-        return detected
-    
     def _score_to_severity(self, score: float) -> str:
-        """Map numeric score to severity level"""
         if score >= 0.8:
-            return 'CRITICAL'
+            return "CRITICAL"
         elif score >= 0.6:
-            return 'HIGH'
-        elif score >= 0.4:
-            return 'MEDIUM'
-        else:
-            return 'LOW'
-    
-    def score_multiple_policies(self, findings: List[Dict]) -> List[Dict]:
-        """Score multiple findings from scanner"""
-        scored = []
-        
-        for finding in findings:
-            policy_json = finding.get('policy_json', {})
-            entity_type = finding.get('entity_type', 'role')
-            
-            # Check if internet-facing (simplified - Lambda + API Gateway = internet-facing)
-            is_internet_facing = entity_type == 'role' and 'lambda' in finding.get('entity_name', '').lower()
-            
-            score_result = self.score_policy(policy_json, entity_type, is_internet_facing)
-            
-            scored.append({
-                **finding,
-                **score_result
-            })
-        
-        # Sort by score (highest risk first)
-        return sorted(scored, key=lambda x: x['score'], reverse=True)
+            return "HIGH"
+        elif score >= 0.35:
+            return "MEDIUM"
+        return "LOW"
 
-if __name__ == '__main__':
+    def score_multiple_policies(self, findings: List[dict], usage_data_map: dict = None) -> List[dict]:
+        """
+        Score a batch of findings, merging in usage data by entity_name.
+        Returns findings sorted by score, highest risk first.
+        """
+        usage_data_map = usage_data_map or {}
+        scored = []
+        for finding in findings:
+            usage = usage_data_map.get(finding.get("entity_name"), {})
+            result = self.score_policy(finding, usage)
+            scored.append({**finding, **result})
+        return sorted(scored, key=lambda x: x["score"], reverse=True)
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     scorer = RiskScorer()
-    
-    # Test on a policy
-    test_policy = {
-        "Statement": [
-            {
-                "Effect": "Allow",
-                "Action": "*",
-                "Resource": "*"
-            }
-        ]
-    }
-    
-    result = scorer.score_policy(test_policy, entity_type='role', is_internet_facing=True)
-    print(json.dumps(result, indent=2))
+    test_finding = {"actions": ["*"], "resources": ["*"], "policy_type": "inline", "entity_type": "role"}
+    result = scorer.score_policy(test_finding)
+    print(result)

@@ -10,7 +10,7 @@ rich==13.7.0
 python-dotenv==1.0.0
 
 # AI generation (M4 — upcoming)
-anthropic==0.18.0
+openai==1.30.0
 
 # Machine learning (M2 — upcoming)
 xgboost==2.0.3

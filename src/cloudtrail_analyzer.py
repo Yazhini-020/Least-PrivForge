@@ -54,8 +54,11 @@ MAX_EVENTS_SCANNED = 5000     # hard cap on total account events scanned per rol
 class CloudTrailAnalyzer:
     """Extract actual AWS API actions used by IAM roles over N days."""
 
-    def __init__(self, profile: str = "default", region: str = "eu-central-1", days: int = 30):
-        session = boto3.Session(profile_name=profile, region_name=region)
+    def __init__(self, profile: Optional[str] = "default", region: str = "eu-central-1", days: int = 30):
+        try:
+            session = boto3.Session(profile_name=profile, region_name=region) if profile else boto3.Session(region_name=region)
+        except Exception:
+            session = boto3.Session(region_name=region)
         self.cloudtrail = session.client("cloudtrail", region_name=region)
         self.iam = session.client("iam", region_name=region)
         self.days = days

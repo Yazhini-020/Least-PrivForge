@@ -36,7 +36,7 @@ class RiskScorer:
                 "Run `python -m src.train_model` first. Falling back to rule-based scoring.",
                 MODEL_PATH
             )
-            self.use_ml = False
+            self.use_ml = True
 
     def score_policy(self, finding: dict, usage_data: dict = None) -> Dict[str, Any]:
         """

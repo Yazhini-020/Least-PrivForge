@@ -451,6 +451,10 @@ def detect_wildcards_in_statement(statement: dict) -> list:
 
     # RULE 5 — specific actions on Resource:*
     if has_wildcard_resource and not has_full_wildcard_action:
+        from src.validator import action_requires_wildcard_resource
+        if all(action_requires_wildcard_resource(a) for a in actions):
+            return findings  # AWS requires Resource:"*" for these actions
+
         findings.append({
             "finding_type": "WILDCARD_RESOURCE",
             "description":  (
@@ -460,7 +464,6 @@ def detect_wildcards_in_statement(statement: dict) -> list:
             "actions":   actions,
             "resources": resources,
         })
-
     return findings
 
 

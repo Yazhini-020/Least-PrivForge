@@ -281,6 +281,20 @@ def generate_least_privilege_policy(
         validation = validator.validate_policy_json(parsed["policy"])
 
         if validation["is_valid"]:
+            scope_check = validator.check_resource_scope_claims(parsed["policy"])
+            unjustified_wildcards = [
+                s for s in scope_check["statements"]
+                if not s["wildcard_fully_justified"]
+            ]
+            if unjustified_wildcards:
+                bad_actions = [a for s in unjustified_wildcards for a in s["actions_not_requiring_wildcard"]]
+                previous_error = (
+                    f"Resource:\"*\" is used but these actions do NOT require it and "
+                    f"should be scoped to a specific ARN instead: {bad_actions}"
+                )
+                log.warning("  → Attempt %d: unjustified wildcard resource (%s), retrying...",
+                            attempt, previous_error)
+                continue 
             log.info("  → Valid policy generated on attempt %d", attempt)
 
             confidence = parsed.get("confidence", "medium")
@@ -300,7 +314,14 @@ def generate_least_privilege_policy(
                     "Downgraded from 'high': underlying CloudTrail temporal data was "
                     "incomplete for this role. " + confidence_reason
                 ).strip()
-
+            days = usage_data.get("days_analyzed", 30)
+            matched = usage_data.get("events_count", 0)
+            if confidence == "high" and (days < 7 or matched < 5):
+                confidence = "medium"
+                confidence_reason = (
+                    f"Capped at medium: thin evidence ({matched} matched event(s) "
+                    f"over {days} day(s)). " + confidence_reason
+                ).strip()
             return {
                 "success": True,
                 "policy": parsed["policy"],

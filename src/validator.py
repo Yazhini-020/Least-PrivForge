@@ -23,7 +23,23 @@ MANAGED_SIZE_LIMIT = 6144
 
 ACTION_RE = re.compile(r"^[a-zA-Z0-9]+:[a-zA-Z0-9\*]+$")
 ARN_RE = re.compile(r"^arn:aws[a-zA-Z-]*:[a-zA-Z0-9\-]*:[a-zA-Z0-9\-]*:\d{0,12}:.+$")
+# AWS IAM actions that do not support resource-level permissions, so
+# Resource:"*" is required for them. Only add an action here after
+# confirming "Resource types" is empty for it in the AWS Service
+# Authorization Reference:
+# https://docs.aws.amazon.com/service-authorization/latest/reference/
+REQUIRES_WILDCARD_RESOURCE = frozenset({
+    "s3:ListAllMyBuckets",
+    "ec2:DescribeInstances",
+    "ec2:DescribeRegions",
+    "cloudtrail:LookupEvents",
+})
 
+
+def action_requires_wildcard_resource(action: str) -> bool:
+    """True if AWS itself requires Resource:"*" for this action, so an
+    unscoped resource is a platform constraint, not an over-broad grant."""
+    return action in REQUIRES_WILDCARD_RESOURCE
 
 class PolicyValidator:
 
@@ -118,7 +134,38 @@ class PolicyValidator:
                 f"{limit} chars for a {policy_type} policy on a {entity_type}"
             )
         return {"is_valid": len(errors) == 0, "errors": errors, "size": size, "limit": limit}
+    def check_resource_scope_claims(self, policy: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        For every statement using Resource:"*", determine whether every
+        action in it is one that genuinely requires a wildcard resource.
+        If even one action doesn't need it, the "*" is a real over-broad
+        grant, not an unavoidable platform constraint — flag it.
+        """
+        statements = policy.get("Statement", [])
+        if isinstance(statements, dict):
+            statements = [statements]
 
+        findings = []
+        for i, st in enumerate(statements):
+            resources = st.get("Resource", [])
+            resources = [resources] if isinstance(resources, str) else resources
+            if "*" not in resources:
+                continue
+
+            actions = st.get("Action", [])
+            actions = [actions] if isinstance(actions, str) else actions
+
+            unjustified = [a for a in actions if not action_requires_wildcard_resource(a)]
+            justified = [a for a in actions if action_requires_wildcard_resource(a)]
+
+            findings.append({
+                "statement_index": i,
+                "wildcard_fully_justified": len(unjustified) == 0,
+                "actions_requiring_wildcard": justified,
+                "actions_not_requiring_wildcard": unjustified,
+            })
+
+        return {"statements": findings}
 
 if __name__ == "__main__":
     v = PolicyValidator()

@@ -197,6 +197,12 @@ def fix(profile, region, days, use_mock):
             console.print(f"[green]✓ Fix generated (confidence: {rec['confidence']})[/green]")
             console.print(f"  Explanation: {rec['explanation']}")
             console.print(f"  Removed actions: {', '.join(rec['removed_actions']) if rec['removed_actions'] else 'none listed'}")
+
+            from src.formatter import export_all
+            import os
+            os.makedirs('exports', exist_ok=True)
+            export_paths = export_all(rec['policy'], base_name=f"exports/{r['entity_name']}")
+            console.print(f"  Exported: {export_paths['json']}, {export_paths['terraform']}, {export_paths['cloudformation']}")
         else:
             console.print(f"[red]✗ Generation failed: {rec['explanation']}[/red]")
 
@@ -305,7 +311,41 @@ def temporal(profile, region, days, role, use_mock):
     with open('temporal_report.json', 'w') as fh:
         json.dump(result, fh, indent=2, default=str)
     console.print("\n[bold]📁 Full report saved to temporal_report.json[/bold]")
+@cli.command()
+@click.option('--report', default='fixes_report.json', help='Path to fixes_report.json')
+def diff(report):
+    """Show before/after diff for each fix in a fixes_report.json"""
+    from src.diff_viewer import build_diff, render_text
+    import json
 
+    with open(report) as f:
+        findings = json.load(f)
 
+    for finding in findings:
+        d = build_diff(finding)
+        console.print(render_text(d))
+        console.print()
+@cli.command(name='ci-gate')
+@click.option('--path', default=None, help='File or directory path to scan (defaults to repository policies/exports)')
+@click.option('--fail-on', default='HIGH', type=click.Choice(['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'], case_sensitive=False), help='Minimum risk severity to trigger CI check failure')
+@click.option('--use-mock/--no-mock', default=False, help='Include mock identities in scan')
+def ci_gate(path, fail_on, use_mock):
+    """M6 — CI/CD Security Gate: Check IAM policies for unsafe wildcards and structure violations"""
+    import sys
+    from src.ci_gate import run_ci_gate, render_ci_report
+
+    passed, results = run_ci_gate(
+        target_path=path,
+        fail_threshold=fail_on,
+        scan_mock_entities=use_mock
+    )
+
+    render_ci_report(passed, results, fail_on)
+
+    if not passed:
+        sys.exit(1)
+    else:
+        sys.exit(0)
+        
 if __name__ == '__main__':
     cli()

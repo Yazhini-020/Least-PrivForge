@@ -1,0 +1,15 @@
+
+# Environment secrets
+.env
+.env.*
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.coverage
+.pytest_cache/
+
+# Generated reports
+analysis_report.json
+findings.json
+fixes_report.json

@@ -35,6 +35,19 @@ jobs:
         run: |
           python -m pytest --cov=src
 
+      - name: Ensure there is something to scan
+        run: |
+          count=$(find policies -type f \( -name '*.json' -o -name '*.tf' -o -name '*.yaml' -o -name '*.yml' \) | wc -l)
+          echo "Policy files to scan: $count"
+          test "$count" -gt 0
+
+      - name: Gate self-test (must FAIL on an unsafe policy)
+        run: |
+          if python -m src.cli ci-gate --path tests/fixtures/unsafe/ --fail-on HIGH; then
+            echo "Gate passed an unsafe policy, so the gate is broken"
+            exit 1
+          fi
+
       - name: Run IAM CI/CD Security Gate
         run: |
-          python -m src.cli ci-gate --path exports/ --fail-on HIGH
+          python -m src.cli ci-gate --path policies/ --fail-on HIGH

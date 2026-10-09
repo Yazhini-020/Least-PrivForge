@@ -275,7 +275,7 @@ def run_ci_gate(
             "status": "FAIL" if is_failed else "PASS"
         })
 
-    passed = not has_failure
+    passed = (not has_failure) and (len(results) > 0)
     return passed, results
 
 

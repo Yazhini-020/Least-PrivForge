@@ -1,0 +1,20 @@
+resource "aws_iam_policy" "test_lambda_active" {
+  name   = "test_lambda_active"
+  policy = jsonencode(
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "Statement1",
+        "Effect": "Allow",
+        "Action": [
+          "s3:ListAllMyBuckets"
+        ],
+        "Resource": [
+          "*"
+        ]
+      }
+    ]
+  }
+  )
+}

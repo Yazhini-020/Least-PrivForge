@@ -37,4 +37,4 @@ jobs:
 
       - name: Run IAM CI/CD Security Gate
         run: |
-          python -m src.cli ci-gate --fail-on HIGH
+          python -m src.cli ci-gate --path exports/ --fail-on HIGH

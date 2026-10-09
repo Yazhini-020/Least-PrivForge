@@ -201,6 +201,9 @@ def run_ci_gate(
     fail_rank = SEVERITY_RANKS.get(fail_threshold.upper(), 3)
     policy_targets = []
 
+    if target_path is None:
+        target_path = "exports" if os.path.exists("exports") else "."
+
     if target_path:
         if os.path.isfile(target_path):
             policy_targets.extend(extract_policies_from_file(target_path))
@@ -208,13 +211,15 @@ def run_ci_gate(
             for root, _, files in os.walk(target_path):
                 if any(part.startswith(".") for part in root.split(os.sep)):
                     continue
+                if root.startswith("dataset") or root.startswith(os.path.join(".", "dataset")):
+                    continue
                 for file in files:
                     if file.endswith((".json", ".yaml", ".yml", ".tf")):
                         full_p = os.path.join(root, file)
                         policy_targets.extend(extract_policies_from_file(full_p))
 
     mock_findings = []
-    if scan_mock_entities or not target_path:
+    if scan_mock_entities:
         mock_findings = scan_all(use_mock=True)
 
     results = []

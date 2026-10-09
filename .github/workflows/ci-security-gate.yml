@@ -36,15 +36,26 @@ jobs:
           python -m pytest --cov=src
 
       - name: Ensure there is something to scan
+        shell: bash
         run: |
           count=$(find policies -type f \( -name '*.json' -o -name '*.tf' -o -name '*.yaml' -o -name '*.yml' \) | wc -l)
           echo "Policy files to scan: $count"
           test "$count" -gt 0
 
       - name: Gate self-test (must FAIL on an unsafe policy)
+        shell: bash
         run: |
-          if python -m src.cli ci-gate --path tests/fixtures/unsafe/ --fail-on HIGH; then
-            echo "Gate passed an unsafe policy, so the gate is broken"
+          set +e
+          out=$(python -m src.cli ci-gate --path tests/fixtures/unsafe/ --fail-on HIGH 2>&1)
+          code=$?
+          set -e
+          echo "$out"
+          if [ "$code" -eq 0 ]; then
+            echo "Gate passed an unsafe policy"
+            exit 1
+          fi
+          if ! echo "$out" | grep -q "SERVICE_WILDCARD_WITH_WILDCARD_RESOURCE"; then
+            echo "Gate failed, but not for the expected security finding"
             exit 1
           fi
 

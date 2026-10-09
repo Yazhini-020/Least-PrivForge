@@ -54,11 +54,10 @@ jobs:
             echo "Gate passed an unsafe policy"
             exit 1
           fi
-          if ! echo "$out" | grep -q "SERVICE_WILDCARD_WITH_WILDCARD_RESOURCE"; then
+          if ! echo "$out" | tr -d '\n' | grep -q "SERVICE_WILDCARD_WITH_WILDCARD_RESOURCE"; then
             echo "Gate failed, but not for the expected security finding"
             exit 1
           fi
-
       - name: Run IAM CI/CD Security Gate
         run: |
           python -m src.cli ci-gate --path policies/ --fail-on HIGH

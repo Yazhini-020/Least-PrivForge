@@ -6,11 +6,17 @@ on:
   pull_request:
     branches: [ main, master, develop ]
 
+# The workflow only reads the repository, so the token gets read-only access.
+permissions:
+  contents: read
+
 jobs:
   iam-security-gate:
     name: IAM Policy Security Check & Unit Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
+      # Dummy values so boto3 never picks up real credentials in CI.
       AWS_DEFAULT_REGION: eu-central-1
       AWS_ACCESS_KEY_ID: testing
       AWS_SECRET_ACCESS_KEY: testing
@@ -28,16 +34,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install pytest pytest-cov
+          pip install -r requirements.txt
 
-      - name: Run Unit Tests
-        run: |
-          python -m pytest --cov=src
+      - name: Run unit tests
+        run: python -m pytest --cov=src
 
       - name: Ensure there is something to scan
         shell: bash
         run: |
+          test -d policies || { echo "::error::policies/ directory is missing"; exit 1; }
           count=$(find policies -type f \( -name '*.json' -o -name '*.tf' -o -name '*.yaml' -o -name '*.yml' \) | wc -l)
           echo "Policy files to scan: $count"
           test "$count" -gt 0
@@ -51,13 +56,15 @@ jobs:
           set -e
           echo "$out"
           if [ "$code" -eq 0 ]; then
-            echo "Gate passed an unsafe policy"
+            echo "::error::Gate passed an unsafe policy"
             exit 1
           fi
-          if ! echo "$out" | tr -d '\n' | grep -q "SERVICE_WILDCARD_WITH_WILDCARD_RESOURCE"; then
-            echo "Gate failed, but not for the expected security finding"
+          # Match the short summary line, not a finding name: the results
+          # table wraps long names across lines, which breaks grep.
+          if ! echo "$out" | grep -q "CI SECURITY GATE FAILED"; then
+            echo "::error::Gate exited non-zero but did not report a gate failure (possible crash)"
             exit 1
           fi
+
       - name: Run IAM CI/CD Security Gate
-        run: |
-          python -m src.cli ci-gate --path policies/ --fail-on HIGH
+        run: python -m src.cli ci-gate --path policies/ --fail-on HIGH

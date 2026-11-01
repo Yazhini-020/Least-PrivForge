@@ -1,4 +1,3 @@
-
 [
   {
     "finding": {
@@ -884,5 +883,3044 @@
       "action_count": 2
     },
     "risk_score": 0.86
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-0"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.106
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-1"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.057
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData"
+      ],
+      "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:resource/cloudwatch-item-2"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.101
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:ListRoles",
+        "iam:GetUser",
+        "iam:GetRole"
+      ],
+      "resources": [
+        "arn:aws:iam:us-east-1:123456789012:resource/iam-item-3"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:ListRoles"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.1
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeSecurityGroups"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-4"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeSecurityGroups"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.189
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:ListMetrics"
+      ],
+      "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:resource/cloudwatch-item-5"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:ListMetrics"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.177
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:us-east-1:123456789012:resource/secretsmanager-item-6"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.228
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-7"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.087
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-8"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.173
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances"
+      ],
+      "resources": [
+        "arn:aws:rds:us-east-1:123456789012:resource/rds-item-9"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.207
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "resources": [
+        "arn:aws:s3:us-east-1:123456789012:resource/s3-item-10"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListBucket"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.099
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-11"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.083
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:us-east-1:123456789012:resource/secretsmanager-item-12"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.133
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-13"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.194
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction"
+      ],
+      "resources": [
+        "arn:aws:lambda:us-east-1:123456789012:resource/lambda-item-14"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:ListFunctions"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.206
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-15"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.15
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:us-east-1:123456789012:resource/secretsmanager-item-16"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.25
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:GetRole",
+        "iam:GetUser"
+      ],
+      "resources": [
+        "arn:aws:iam:us-east-1:123456789012:resource/iam-item-17"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetRole",
+        "iam:GetUser"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.162
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:ReceiveMessage"
+      ],
+      "resources": [
+        "arn:aws:sqs:us-east-1:123456789012:resource/sqs-item-18"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.252
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:us-east-1:123456789012:resource/secretsmanager-item-19"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.08
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:ReceiveMessage",
+        "sqs:GetQueueAttributes"
+      ],
+      "resources": [
+        "arn:aws:sqs:us-east-1:123456789012:resource/sqs-item-20"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage",
+        "sqs:GetQueueAttributes"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.142
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData",
+        "cloudwatch:ListMetrics"
+      ],
+      "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:resource/cloudwatch-item-21"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.065
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey"
+      ],
+      "resources": [
+        "arn:aws:kms:us-east-1:123456789012:resource/kms-item-22"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.213
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeSecurityGroups"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-23"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.168
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:us-east-1:123456789012:resource/dynamodb-item-24"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.236
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeInstances"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-25"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.157
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetBucketLocation",
+        "s3:ListBucket"
+      ],
+      "resources": [
+        "arn:aws:s3:us-east-1:123456789012:resource/s3-item-26"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.107
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:GetRole",
+        "iam:ListRoles"
+      ],
+      "resources": [
+        "arn:aws:iam:us-east-1:123456789012:resource/iam-item-27"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetRole",
+        "iam:ListRoles"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.107
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData"
+      ],
+      "resources": [
+        "arn:aws:cloudwatch:us-east-1:123456789012:resource/cloudwatch-item-28"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.273
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction"
+      ],
+      "resources": [
+        "arn:aws:lambda:us-east-1:123456789012:resource/lambda-item-29"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.258
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "resources": [
+        "arn:aws:s3:us-east-1:123456789012:resource/s3-item-30"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.147
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem",
+        "dynamodb:Scan"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:us-east-1:123456789012:resource/dynamodb-item-31"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.222
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey"
+      ],
+      "resources": [
+        "arn:aws:kms:us-east-1:123456789012:resource/kms-item-32"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.271
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSecurityGroups"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-33"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.267
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey"
+      ],
+      "resources": [
+        "arn:aws:kms:us-east-1:123456789012:resource/kms-item-34"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.265
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:Query",
+        "dynamodb:GetItem"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:us-east-1:123456789012:resource/dynamodb-item-35"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:Query",
+        "dynamodb:GetItem"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.155
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances"
+      ],
+      "resources": [
+        "arn:aws:rds:us-east-1:123456789012:resource/rds-item-36"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.166
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeSecurityGroups"
+      ],
+      "resources": [
+        "arn:aws:ec2:us-east-1:123456789012:resource/ec2-item-37"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.086
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity"
+      ],
+      "resources": [
+        "arn:aws:sts:us-east-1:123456789012:resource/sts-item-38"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.111
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:ReceiveMessage",
+        "sqs:GetQueueAttributes"
+      ],
+      "resources": [
+        "arn:aws:sqs:us-east-1:123456789012:resource/sqs-item-39"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.208
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:ReceiveMessage",
+        "s3:DeleteObject"
+      ],
+      "resources": [
+        "arn:aws:sqs:::item-0",
+        "arn:aws:s3:::item-0"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.427
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:GetQueueAttributes",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "arn:aws:sqs:::item-1",
+        "arn:aws:iam:::item-1"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:GetQueueAttributes",
+        "iam:PassRole"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.376
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetBucketLocation",
+        "sns:Publish"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.434
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem",
+        "sts:AssumeRole"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.551
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:ListRoles",
+        "secretsmanager:PutSecretValue"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:ListRoles",
+        "secretsmanager:PutSecretValue"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.53
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret",
+        "dynamodb:PutItem"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:::item-5",
+        "arn:aws:dynamodb:::item-5"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.551
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:Query",
+        "rds:DeleteDBInstance"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:::item-6",
+        "arn:aws:rds:::item-6"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:Query",
+        "rds:DeleteDBInstance"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.401
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:GetTopicAttributes",
+        "sqs:DeleteMessage"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:GetTopicAttributes",
+        "sqs:DeleteMessage"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.506
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "sqs:DeleteMessage"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances",
+        "sqs:DeleteMessage"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.43
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey",
+        "cloudwatch:PutMetricData"
+      ],
+      "resources": [
+        "arn:aws:kms:::item-9",
+        "arn:aws:cloudwatch:::item-9"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.36
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:GetMetricData",
+        "secretsmanager:GetSecretValue"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData",
+        "secretsmanager:GetSecretValue"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.562
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeVpcs",
+        "sqs:DeleteMessage"
+      ],
+      "resources": [
+        "arn:aws:ec2:::item-11",
+        "arn:aws:sqs:::item-11"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeVpcs"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.51
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:ListFunctions",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "arn:aws:lambda:::item-12",
+        "arn:aws:sts:::item-12"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:ListFunctions"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.476
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:GetQueueAttributes",
+        "dynamodb:UpdateItem"
+      ],
+      "resources": [
+        "arn:aws:sqs:::item-13",
+        "arn:aws:dynamodb:::item-13"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:GetQueueAttributes"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.452
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "iam:AttachUserPolicy"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances",
+        "iam:AttachUserPolicy"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.427
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:ReceiveMessage",
+        "dynamodb:PutItem"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.459
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:GetFunction",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:GetFunction"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.501
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:GetFunction",
+        "dynamodb:UpdateItem"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:GetFunction"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.407
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:GetUser",
+        "rds:DeleteDBInstance"
+      ],
+      "resources": [
+        "arn:aws:iam:::item-18",
+        "arn:aws:rds:::item-18"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser",
+        "rds:DeleteDBInstance"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.491
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "iam:AttachUserPolicy"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.497
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:Query",
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "arn:aws:dynamodb:::item-20",
+        "arn:aws:sqs:::item-20"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:Query"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.427
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:ListRoles",
+        "dynamodb:UpdateItem"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:ListRoles"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.445
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "lambda:CreateFunction"
+      ],
+      "resources": [
+        "arn:aws:rds:::item-22",
+        "arn:aws:lambda:::item-22"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.527
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:GetFunction",
+        "rds:DeleteDBInstance"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:GetFunction"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.555
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret",
+        "cloudwatch:PutMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.357
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:GetCallerIdentity",
+        "lambda:UpdateFunctionCode"
+      ],
+      "resources": [
+        "arn:aws:sts:::item-25",
+        "arn:aws:lambda:::item-25"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity",
+        "lambda:UpdateFunctionCode"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.473
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "arn:aws:kms:::item-26",
+        "arn:aws:sts:::item-26"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.456
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:GetFunction",
+        "sns:Publish"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:GetFunction",
+        "sns:Publish"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.437
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "rds:CreateDBInstance"
+      ],
+      "resources": [
+        "arn:aws:ec2:::item-28",
+        "arn:aws:rds:::item-28"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.5
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:GetItem",
+        "secretsmanager:PutSecretValue"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.376
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret",
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "arn:aws:secretsmanager:::item-30",
+        "arn:aws:sqs:::item-30"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret",
+        "sqs:SendMessage"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.515
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeInstances",
+        "kms:Decrypt"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeInstances",
+        "kms:Decrypt"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.436
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:DescribeKey",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "arn:aws:kms:::item-32",
+        "arn:aws:sts:::item-32"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "kms:DescribeKey"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.507
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetBucketLocation",
+        "sns:Publish"
+      ],
+      "resources": [
+        "arn:aws:s3:::item-33",
+        "arn:aws:sns:::item-33"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.499
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "ec2:TerminateInstances"
+      ],
+      "resources": [
+        "arn:aws:rds:::item-34",
+        "arn:aws:ec2:::item-34"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances",
+        "ec2:TerminateInstances"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.513
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:DescribeSecret",
+        "cloudwatch:PutMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret",
+        "cloudwatch:PutMetricData"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.486
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:DescribeSecurityGroups",
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "arn:aws:ec2:::item-36",
+        "arn:aws:sqs:::item-36"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups",
+        "sqs:SendMessage"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.504
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "sns:Publish"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances",
+        "sns:Publish"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.428
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:GetObject",
+        "cloudwatch:PutMetricData"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetObject"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.478
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DescribeDBInstances",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "arn:aws:rds:::item-39",
+        "arn:aws:sts:::item-39"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.401
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.692
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.659
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:TerminateInstances",
+        "ec2:RunInstances"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeVpcs"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.702
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.622
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:PassRole",
+        "s3:DeleteObject"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.768
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation",
+        "s3:GetObject"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.651
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.688
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sts:GetCallerIdentity"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.758
+  },
+  {
+    "finding": {
+      "actions": [
+        "dynamodb:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "dynamodb:Scan",
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.697
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:CreateKey",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.724
+  },
+  {
+    "finding": {
+      "actions": [
+        "sts:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.647
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeInstances"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.626
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:DeleteMessage",
+        "sqs:SendMessage"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:GetQueueAttributes"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.754
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "ec2:DescribeSecurityGroups"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.761
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:PassRole",
+        "iam:AttachUserPolicy"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.7
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:PassRole",
+        "lambda:UpdateFunctionCode"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:GetFunction",
+        "lambda:ListFunctions"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.771
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.79
+  },
+  {
+    "finding": {
+      "actions": [
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:GetBucketLocation"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.728
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.734
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.697
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:GetTopicAttributes",
+        "sns:ListSubscriptions"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.69
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:ListSubscriptions",
+        "sns:GetTopicAttributes"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.655
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:DeleteDBInstance",
+        "rds:CreateDBInstance"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.785
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.714
+  },
+  {
+    "finding": {
+      "actions": [
+        "ec2:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.73
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "secretsmanager:DescribeSecret"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.762
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.777
+  },
+  {
+    "finding": {
+      "actions": [
+        "sqs:DeleteMessage",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sqs:ReceiveMessage",
+        "sqs:GetQueueAttributes"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.743
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.714
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:Publish",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:ListSubscriptions"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.627
+  },
+  {
+    "finding": {
+      "actions": [
+        "lambda:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "lambda:ListFunctions"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.784
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.769
+  },
+  {
+    "finding": {
+      "actions": [
+        "cloudwatch:PutMetricData",
+        "iam:PassRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "cloudwatch:GetMetricData",
+        "cloudwatch:ListMetrics"
+      ],
+      "action_count": 2
+    },
+    "risk_score": 0.7
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.765
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.66
+  },
+  {
+    "finding": {
+      "actions": [
+        "secretsmanager:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.749
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.628
+  },
+  {
+    "finding": {
+      "actions": [
+        "sns:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "sns:GetTopicAttributes"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.71
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser",
+        "iam:GetRole",
+        "iam:ListRoles"
+      ],
+      "action_count": 3
+    },
+    "risk_score": 0.775
+  },
+  {
+    "finding": {
+      "actions": [
+        "rds:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "rds:DescribeDBInstances"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.733
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.879
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.871
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.881
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.932
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.828
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.857
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.95
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.827
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.87
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.969
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.975
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.984
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.984
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.897
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.883
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.915
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.975
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.872
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.843
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.891
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.98
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.86
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.93
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.981
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.824
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.961
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.876
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.845
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.932
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "role"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.86
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.946
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.882
+  },
+  {
+    "finding": {
+      "actions": [
+        "kms:*",
+        "iam:PassRole",
+        "sts:AssumeRole"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [
+        "iam:GetUser"
+      ],
+      "action_count": 1
+    },
+    "risk_score": 0.953
+  },
+  {
+    "finding": {
+      "actions": [
+        "iam:*",
+        "ec2:*",
+        "s3:*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "managed",
+      "entity_type": "group"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.964
+  },
+  {
+    "finding": {
+      "actions": [
+        "*"
+      ],
+      "resources": [
+        "*"
+      ],
+      "policy_type": "inline",
+      "entity_type": "user"
+    },
+    "usage": {
+      "actions_used": [],
+      "action_count": 0
+    },
+    "risk_score": 0.895
   }
 ]

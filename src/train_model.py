@@ -68,9 +68,13 @@ def train():
 
     log.info("Training XGBoost regressor...")
     model = xgb.XGBRegressor(
-        n_estimators=100,
-        max_depth=4,
-        learning_rate=0.1,
+        n_estimators=120,
+        max_depth=3,
+        learning_rate=0.08,
+        colsample_bytree=0.8,
+        subsample=0.85,
+        reg_alpha=0.1,
+        reg_lambda=1.0,
         objective="reg:squarederror",
         random_state=42
     )
@@ -81,7 +85,9 @@ def train():
     log.info("R^2 on train set: %.3f", train_score)
     log.info("R^2 on test set:  %.3f", test_score)
 
-    cv_scores = cross_val_score(model, X, y, cv=5, scoring="r2")
+    from sklearn.model_selection import KFold
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    cv_scores = cross_val_score(model, X, y, cv=kf, scoring="r2")
     log.info("5-fold CV R^2: %.3f (+/- %.3f)", cv_scores.mean(), cv_scores.std())
 
     from src.ml_features import FEATURE_NAMES

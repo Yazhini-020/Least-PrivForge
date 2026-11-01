@@ -61,11 +61,27 @@ class RiskScorer:
         score = float(self.model.predict(vector)[0])
         score = max(0.0, min(1.0, score))
 
+        # Per-prediction Explainability: Top contributing risk factors
+        explanations = []
+        if features.get("has_action_wildcard"):
+            explanations.append("Full Administrator privilege (Action:*) grants unrestricted control")
+        if features.get("has_resource_wildcard"):
+            explanations.append("Resource:* wildcard exposes all resources across the AWS account")
+        if features.get("has_service_wildcard"):
+            explanations.append("Service wildcard grants broad access to every action within the service")
+        if features.get("has_admin_keyword"):
+            explanations.append("High-privilege admin keywords detected in granted actions")
+        if features.get("has_iam_action"):
+            explanations.append("IAM permission modification creates privilege escalation vectors")
+        if features.get("cloudtrail_usage_ratio", 1.0) < 0.2:
+            explanations.append(f"Severe over-privileging: only {features.get('cloudtrail_action_count', 0)} of granted permissions were ever used")
+
         return {
             "score": round(score, 3),
             "severity": self._score_to_severity(score),
             "method": "xgboost",
             "features": features,
+            "reasons": explanations,
         }
 
     def _score_rule_based(self, finding: dict) -> Dict[str, Any]:

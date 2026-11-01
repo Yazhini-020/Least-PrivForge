@@ -2,9 +2,6 @@
 ai_generator.py — AI Policy Generation Engine (Module 4)
 AI IAM Least-Privilege Enforcer
 
-Now using NVIDIA NIM (llama-3.1-nemotron-nano-8b) instead of Anthropic Claude.
-NIM exposes an OpenAI-compatible API, so we use the openai SDK
-pointed at NVIDIA's endpoint.
 """
 
 import json
@@ -23,7 +20,7 @@ log = logging.getLogger(__name__)
 
 MAX_RETRIES = 3
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
-MODEL = os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-super-120b-a12b")
+MODEL = os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-ultra-550b-a55b")
 
 
 def _get_client():

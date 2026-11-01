@@ -78,7 +78,13 @@ def extract_features(finding: dict, usage_data: dict = None) -> dict:
         "has_sts_action": 1 if "sts" in services else 0,
         "has_organizations_action": 1 if "organizations" in services else 0,
         "has_admin_keyword": 1 if any(
-            isinstance(a, str) and kw in a for a in actions for kw in ("Admin", "Full", "*")
+            isinstance(a, str) and (
+                "admin" in a.lower() or 
+                "fullaccess" in a.lower() or 
+                a.endswith(":*") and a.split(":")[0] in ("iam", "sts", "organizations") or
+                a == "*"
+            )
+            for a in actions
         ) else 0,
         "is_inline_policy": 1 if finding.get("policy_type") == "inline" else 0,
         "entity_is_role": 1 if finding.get("entity_type") == "role" else 0,
